@@ -124,3 +124,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 discord-bot/.vscode/settings.json
+discord-bot/resources/secret.py
