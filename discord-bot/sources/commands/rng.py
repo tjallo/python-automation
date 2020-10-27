@@ -9,7 +9,8 @@ class RnG(commands.Cog, name="RnG"):
 
     @commands.command(name="flipcoin")
     async def coin_flip(self, ctx):
-        """Flip a coin"""
+        """Flip a coin
+         use: !flipcoin"""
         rand = random.randint(0, 1)
         msg = ""
 

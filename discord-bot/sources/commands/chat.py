@@ -8,7 +8,8 @@ class Chat(commands.Cog, name="Chat"):
 
     @commands.command(name='ping')
     async def cool_bot(self, ctx):
-        """Test to see if the bot is properly online"""
+        """Test to see if the bot is properly online
+        use: !ping"""
         await ctx.send(f'Hello, {ctx.message.author.name}!')
 
 
