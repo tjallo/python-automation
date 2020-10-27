@@ -9,5 +9,5 @@ def get_summary(article_name):
         result = string_parser(summary)
     except:
         result = "Article not found!"
-        
+
     return result
