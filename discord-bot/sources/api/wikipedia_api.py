@@ -11,3 +11,14 @@ def get_summary(article_name):
         result = "Article not found!"
 
     return result
+
+
+def get_image(article_name):
+    image = ""
+    try:
+        page = wikipedia.page(article_name)
+        image = page.images[0]
+    except:
+        image="Article not found"
+
+    return image
