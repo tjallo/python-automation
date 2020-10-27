@@ -7,7 +7,7 @@ class Voice(commands.Cog, name="Voice"):
         self.bot = bot
 
     @commands.command(name='voicetest')
-    async def cool_bot(self, ctx):
+    async def voicetest(self, ctx):
         """Vocie test function, placeholder for now"""
         await ctx.send(f'Voice is working (this is still a placeholder)')
 
