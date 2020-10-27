@@ -1,14 +1,22 @@
-"""
-USING DUCKDUCKGO Search Engine
-"""
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
-import requests
 
-def getHTML(query):
-    query = query.replace(" ", "%20")
-    URL = f"https://duckduckgo.com/?q={query}&atb=v241-4&iar=images&iax=images&ia=images"
+def getImageLink(query):
+    driver = webdriver.Firefox()
 
-    result = requests.get(URL)
-    return result.text
+    URL = f"https://duckduckgo.com/?q={query}&atb=v241-4&iax=images&ia=images"
+    link = ""
+    try:
+        driver.get(URL)
 
-print(getHTML("Klok bier"))
+        el = driver.find_elements_by_class_name("tile--img__img")
+        el[0].click()
+
+        link = driver.find_element_by_class_name("c-detail__btn").get_attribute("href")
+    except:
+        link = "Image not found!"
+
+    driver.close()
+
+    return link
