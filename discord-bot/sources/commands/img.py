@@ -30,7 +30,11 @@ class Images(commands.Cog, name ="Images"):
         await ctx.send(f"Working on deepfrying {arg}....")
 
         path = await Img.deepfrySearch(arg)
-        await ctx.send(file=discord.File(path))
+        try:
+            await ctx.send(file=discord.File(path))
+        except:
+            await ctx.send("Image not found...")
+
 
 def setup(bot):
     bot.add_cog(Images(bot))
