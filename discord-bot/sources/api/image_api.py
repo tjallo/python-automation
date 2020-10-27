@@ -12,7 +12,7 @@ from PIL import Image
 def getImageLink(query):
     options = Options()
     options.add_argument("--headless")
-    driver = webdriver.Firefox()
+    driver = webdriver.Firefox(options=options)
 
     URL = f"https://duckduckgo.com/?q={query}&atb=v241-4&iax=images&ia=images"
     link = ""
@@ -35,6 +35,12 @@ def image_downloader(query):
     cwd = os.getcwd()
     image_url = getImageLink(query)
     filename = image_url.split("/")[-1]
+
+    if len(filename) > 14:
+        filename = filename[-14:]
+    
+    if not '.jpeg' in filename or not '.jpg' in filename or not '.gif' in filename or not '.png' in filename or not '.bit' in filename:
+        filename = filename + ".jpg"
 
     result = requests.get(image_url, stream=True)
 
