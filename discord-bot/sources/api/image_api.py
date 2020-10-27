@@ -60,15 +60,15 @@ async def deepfryCoroutine(path, savepath):
     img = await deeppyer.deepfry(img, flares=False)
     img.save(savepath)
 
-def deepfry(path, savepath):
-    asyncio.run(deepfryCoroutine(path, savepath))
+async def deepfry(path, savepath):
+    await (deepfryCoroutine(path, savepath))
     return savepath
 
-def deepfrySearch(query):
+async def deepfrySearch(query):
     img_path = image_downloader(query)
 
     savepath = img_path[:-5] + "deepfried" + img_path[-5:]
 
-    deepfry(img_path, savepath)
+    await deepfry(img_path, savepath)
 
     return(savepath)

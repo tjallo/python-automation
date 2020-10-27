@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 
 from sources.api import image_api as Img
 
@@ -19,15 +20,17 @@ class Images(commands.Cog, name ="Images"):
 
         await ctx.send(link)
 
-    @commands.command(name="filedownload")
+    @commands.command(name="deepfry")
     async def fileDownload(self, ctx, arg):
         """
-        Test function, do not use
+        deepfry images from the internet
+        use: !deepfry "Jan Pieterszoon Coen"
         """
 
-        await ctx.send(f"Command ran with {arg}")
+        await ctx.send(f"Working on deepfrying {arg}....")
 
-        Img.image_downloader(arg)
+        path = await Img.deepfrySearch(arg)
+        await ctx.send(file=discord.File(path))
 
 def setup(bot):
     bot.add_cog(Images(bot))
