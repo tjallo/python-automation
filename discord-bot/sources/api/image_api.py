@@ -1,8 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
-import shutil, requests, os
+import shutil
+import requests
+import os
+import deeppyer
+import asyncio
 from sources.util import file_handler as File
 from resources import config
+from PIL import Image
 
 def getImageLink(query):
     options = Options()
@@ -27,6 +32,7 @@ def getImageLink(query):
 
 
 def image_downloader(query):
+    cwd = os.getcwd()
     image_url = getImageLink(query)
     filename = image_url.split("/")[-1]
 
@@ -36,8 +42,33 @@ def image_downloader(query):
         result.raw.decode_content = True
 
     File.temp_cleanup()
-    
+
     os.chdir(config.temp_folder)
 
     with open(filename, 'wb+') as f:
         shutil.copyfileobj(result.raw, f)
+
+    fullpath = os.getcwd() + "\\" + filename
+
+    os.chdir(cwd)
+
+    return fullpath
+
+
+async def deepfryCoroutine(path, savepath):
+    img = Image.open(path)
+    img = await deeppyer.deepfry(img, flares=False)
+    img.save(savepath)
+
+def deepfry(path, savepath):
+    asyncio.run(deepfryCoroutine(path, savepath))
+    return savepath
+
+def deepfrySearch(query):
+    img_path = image_downloader(query)
+
+    savepath = img_path[:-5] + "deepfried" + img_path[-5:]
+
+    deepfry(img_path, savepath)
+
+    return(savepath)
