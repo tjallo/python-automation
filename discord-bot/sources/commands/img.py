@@ -19,6 +19,16 @@ class Images(commands.Cog, name ="Images"):
 
         await ctx.send(link)
 
+    @commands.command(name="filedownload")
+    async def fileDownload(self, ctx, arg):
+        """
+        Test function, do not use
+        """
+
+        await ctx.send(f"Command ran with {arg}")
+
+        Img.image_downloader(arg)
+
 def setup(bot):
     bot.add_cog(Images(bot))
 

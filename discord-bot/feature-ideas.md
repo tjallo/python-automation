@@ -8,7 +8,7 @@
 * LastFM intergration
     * Last scrobbles
     * Scrobble amount over time
-* Some kind of ImgSearch intergration
+* ~~Some kind of ImgSearch intergration~~
 * Meme generator (imgflip)
     * Generate memes on the fly
     * See list of popular meme (templates)

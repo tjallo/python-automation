@@ -1,6 +1,7 @@
 # Depenedencies
 import os
 from discord.ext import commands
+from sources.util import file_handler as File
 
 # Local imports
 from resources import secret, config
@@ -15,6 +16,11 @@ async def on_ready():
     print("Bot has started up...")
     print('We have logged in as {0.user}'.format(bot))
 
+def run_on_startup():
+    print("Running startup scripts...")
+    File.run_on_startup()
+
+
 if __name__ == "__main__":
     loaded_ext = []
     for extension in startup_extensions:
@@ -25,6 +31,7 @@ if __name__ == "__main__":
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
 
+    run_on_startup()
     print("Loaded the following extensions: " + ", ".join(loaded_ext))
 
     bot.run(secret.BOT_TOKEN)
