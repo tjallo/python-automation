@@ -1,6 +1,8 @@
 from discord.ext import commands
 from sources.api import wikipedia_api as Wiki
 
+# TODO: Add picture return function
+
 class Wikipedia(commands.Cog, name='Wikipedia'):
 
     def __init__(self, bot):

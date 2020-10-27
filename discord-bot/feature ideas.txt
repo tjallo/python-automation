@@ -1,0 +1,12 @@
+# API-like Intergrations
+Reddit intergration
+LastFM intergration
+Some kind of ImgSearch intergration
+Meme generator (imgflip)
+
+# Discord.py Intergrations
+Voice / Music intergration
+
+# Fun Intergrations
+Deepfryer
+(Drinking) Game(s)
