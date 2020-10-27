@@ -9,6 +9,11 @@ startup_extensions = [f"sources.commands.{x[:-3]}" for x in os.listdir(os.getcwd
 
 bot = commands.Bot(command_prefix=config.prefix, description=config.description)
 
+# Startup message
+@bot.event
+async def on_ready():
+    print("Bot has started up...")
+    print('We have logged in as {0.user}'.format(bot))
 
 if __name__ == "__main__":
     for extension in startup_extensions:
