@@ -1,12 +1,13 @@
 # Depenedencies
+import os
 from discord.ext import commands
 
 # Local imports
 from resources import secret, config
 
-startup_extensions = ["sources.commands.chat"]
+startup_extensions = [f"sources.commands.{x[:-3]}" for x in os.listdir(os.getcwd() + "\\sources\\commands") if x[-3:] == ".py"]
 
-bot = commands.Bot(command_prefix=config.prefix, description="Hello world!")
+bot = commands.Bot(command_prefix=config.prefix, description=config.description)
 
 
 if __name__ == "__main__":

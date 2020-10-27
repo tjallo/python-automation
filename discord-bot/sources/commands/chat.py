@@ -1,17 +1,16 @@
-import discord
 from discord.ext import commands
 
 
-class ChatCog(commands.Cog):
+class Chat(commands.Cog, name="Chat"):
 
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='coolbot')
+    @commands.command(name='ping')
     async def cool_bot(self, ctx):
-        """Is the bot cool?"""
-        await ctx.send('This bot is cool. :)')
+        """Test to see if the bot is properly online"""
+        await ctx.send(f'Hello, {ctx.message.author.name}!')
 
 
 def setup(bot):
-    bot.add_cog(ChatCog(bot))
+    bot.add_cog(Chat(bot))
