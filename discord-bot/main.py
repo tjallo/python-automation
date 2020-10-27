@@ -16,11 +16,15 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
 
 if __name__ == "__main__":
+    loaded_ext = []
     for extension in startup_extensions:
         try:
             bot.load_extension(extension)
+            loaded_ext.append(extension.split(".")[-1])
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
             print('Failed to load extension {}\n{}'.format(extension, exc))
+
+    print("Loaded the following extensions: " + ", ".join(loaded_ext))
 
     bot.run(secret.BOT_TOKEN)
