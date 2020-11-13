@@ -1,10 +1,12 @@
+from sources.api.imgflip_api import generateMemeURL
 from discord.ext import commands
 import discord
 
 from sources.api import image_api as Img
+from sources.api import imgflip_api as Flip
 
-class Images(commands.Cog, name ="Images"):
 
+class Images(commands.Cog, name="Images"):
     def __init__(self, bot):
         self.bot = bot
 
@@ -35,7 +37,26 @@ class Images(commands.Cog, name ="Images"):
         except:
             await ctx.send("Image not found...")
 
+    @commands.command(name="memeIDs")
+    async def memeIDs(self, ctx):
+        """
+        Get list of popular imglfip meme IDs, to be used with memegenerator
+        use: !memeIDs
+        """
+
+        ids = Flip.getPopularMemeIDs()
+        output = ""
+
+        for entry in ids:
+            output += f"{entry[0]}, {entry[1]}\n"
+        output =output[:1999]
+        await ctx.send(output[:output.rfind("\n")])
+
+    @commands.command(name="memeGenerator")
+    async def memeGenerator(self,ctx,arg):
+        inf = " ".join(arg)
+        await ctx.send(inf)
+
 
 def setup(bot):
     bot.add_cog(Images(bot))
-
