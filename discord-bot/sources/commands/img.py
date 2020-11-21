@@ -53,10 +53,16 @@ class Images(commands.Cog, name="Images"):
         await ctx.send(output[:output.rfind("\n")])
 
     @commands.command(name="memeGenerator")
-    async def memeGenerator(self,ctx,arg):
-        inf = " ".join(arg)
-        await ctx.send(inf)
+    async def memeGenerator(self,ctx,*arg):
+        """
+        Generate a meme using imgflip's api
+        use: !memeGenerator "memeID" "top text" "bottom text"
+        """
+        memeID = arg[0]
+        topText = arg[1]
+        bottomText = arg[2]
 
+        await ctx.send(Flip.generateMemeURL(memeID, topText, bottomText))
 
 def setup(bot):
     bot.add_cog(Images(bot))
