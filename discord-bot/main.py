@@ -11,20 +11,19 @@ startup_extensions = [f"sources.commands.{x[:-3]}" for x in os.listdir(os.getcwd
 
 bot = commands.Bot(command_prefix=config.prefix, description=config.description)
 
-# Logging setup
-logger = logging.getLogger('discord')
-Logger.start(logger)
-print("Logger setup was completed")
-
 # Startup message
 @bot.event
 async def on_ready():
     print("Bot has started up...")
     print('We have logged in as {0.user}'.format(bot))
 
+# Seperate scripts that need to be ran on startup
 def run_on_startup():
     print("Running startup scripts...")
     File.run_on_startup()
+    logger = logging.getLogger('discord')
+    Logger.start(logger)
+    print("Logger setup was completed")
 
 
 if __name__ == "__main__":
@@ -35,7 +34,9 @@ if __name__ == "__main__":
             loaded_ext.append(extension.split(".")[-1])
         except Exception as e:
             exc = '{}: {}'.format(type(e).__name__, e)
+            print("###################")
             print('Failed to load extension {}\n{}'.format(extension, exc))
+            print("###################")
 
     run_on_startup()
     print("Loaded the following extensions: " + ", ".join(loaded_ext))
