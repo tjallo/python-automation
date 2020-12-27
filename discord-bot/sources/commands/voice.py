@@ -1,6 +1,7 @@
 from discord.ext import commands
 from discord import FFmpegOpusAudio
 from discord.utils import get
+from sources.api import youtube_api as Youtube
 import subprocess, asyncio
 
 
@@ -50,6 +51,25 @@ class Voice(commands.Cog, name="Voice"):
 
         await disconnectFromChannelAfterNSeconds(voice, runtime + 2)
 
+    @commands.command(name='youtube')
+    async def youtube(self, ctx, *arg):
+        """
+        Play a song from youtube
+        use: !youtube Never Gonna Give you Up
+        """
+
+        query = " ".join(arg)
+
+        results = Youtube.get_urls_and_titles(query)
+
+        sendThis = ""
+
+        for i, result in enumerate(results):
+            sendThis += f"{i} - {result[0]}\n"
+
+        await ctx.send(sendThis)
+
+        
 
         
 
