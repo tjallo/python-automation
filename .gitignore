@@ -125,6 +125,7 @@ dmypy.json
 .pyre/
 discord-bot/.vscode/settings.json
 discord-bot/resources/secret.py
+discord-bot/resources/mp3/*
 discord-bot/test.py
 
 *.jpg

@@ -72,17 +72,16 @@ class Voice(commands.Cog, name="Voice"):
 
     @commands.command(name='youtube')
     async def youtube(self, ctx, *arg):
+        """
+        Play a song from youtube
+        use: !youtube Never Gonna Give you Up
+        """
 
         def check(reaction, user):
             return user != self.bot.user
 
         def check2(reaction, user):
             return user != self.bot.user
-
-        """
-        Play a song from youtube
-        use: !youtube Never Gonna Give you Up
-        """
 
         mp3_handler()
 
@@ -133,11 +132,11 @@ class Voice(commands.Cog, name="Voice"):
         msg1 = await ctx.send(f"Now playing: {current_title}")
         await msg1.add_reaction("🛑")
 
-        emoji3, user3 = await self.bot.wait_for('reaction_add', timeout=60.0, check=check)
+        emoji3, user3 = await self.bot.wait_for('reaction_add', timeout=runtime + 3, check=check)
 
-        await ctx.send(f" asdf{emoji3}")
+        await ctx.send(f"{user3} has stopped playback")
 
-        await disconnectFromChannelAfterNSeconds(voice, runtime + 2)
+        await disconnectFromChannelAfterNSeconds(voice, 0)
         
 
 
