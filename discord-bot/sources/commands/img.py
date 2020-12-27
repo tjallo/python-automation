@@ -23,11 +23,13 @@ class Images(commands.Cog, name="Images"):
         await ctx.send(link)
 
     @commands.command(name="deepfry")
-    async def fileDownload(self, ctx, arg):
+    async def fileDownload(self, ctx, *arg):
         """
         deepfry images from the internet
         use: !deepfry "Jan Pieterszoon Coen"
         """
+
+        arg = " ".join(arg)
 
         await ctx.send(f"Working on deepfrying {arg}....")
 
