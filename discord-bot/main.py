@@ -1,7 +1,8 @@
 # Depenedencies
-import os
+import os,logging
 from discord.ext import commands
 from sources.util import file_handler as File
+from sources.util import logging as Logger
 
 # Local imports
 from resources import secret, config
@@ -9,6 +10,11 @@ from resources import secret, config
 startup_extensions = [f"sources.commands.{x[:-3]}" for x in os.listdir(os.getcwd() + "\\sources\\commands") if x[-3:] == ".py"]
 
 bot = commands.Bot(command_prefix=config.prefix, description=config.description)
+
+# Logging setup
+logger = logging.getLogger('discord')
+Logger.start(logger)
+print("Logger setup was completed")
 
 # Startup message
 @bot.event
