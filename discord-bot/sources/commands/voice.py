@@ -108,6 +108,8 @@ class Voice(commands.Cog, name="Voice"):
         number = 0
         numbers = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣']
         index = numbers.index(emoji) 
+
+        await message.delete()
         
 
         current_title = results[index][0]
